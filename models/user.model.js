@@ -4,18 +4,22 @@ const usermodel = mongoose.Schema({
     name:{
         type:String,
         minlength:3,
-        required:true
+        required:true,
+         trim:true
     },
     email:{
         type:String,
         required:true,
-        unique:true
+        unique:true,
+        lowercase:true,
+        trim:true
     },
     password:{
         type:String,
-        required:true,
-        unique:true
+        required:true
     }
+},{
+    timestamps:true
 });
 
 
