@@ -88,3 +88,22 @@ export const logincontroller = async (req,res)=>{
   }
 };
 
+export const verifyToken = (req,res,next)=>{
+  try {
+    const authheader =  req.headers["authorization"];
+    if(!authheader) return res.status(400).json({Message:"Access denied. Token not found."})
+
+    const token = authheader.split(" ")[1];
+    // console.log(token);
+    if(!token) return res.status(400).json({Message:"Access denied. Invalid Token"});
+
+    const decode = jwt.verify(token,process.env.JWT_SECRET);
+    // console.log(decode)
+    req.userId = decode.id;
+    next();
+
+
+  } catch (error) {
+      console.log(error)
+  }
+}

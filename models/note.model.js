@@ -15,10 +15,13 @@ const noteModel = mongoose.Schema({
   },
    userId: {
     type: mongoose.Schema.Types.ObjectId,  // Special type for MongoDB IDs
-    ref: 'Users',                            // References the User model
+    ref: 'users',                            // References the User model
     required: true                          // Every note must belong to a user
   }
 
 },{
     timestamps:true
 })
+
+const Notes = mongoose.model("Notes",noteModel);
+export default Notes;

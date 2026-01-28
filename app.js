@@ -1,6 +1,7 @@
 import express from 'express'
 import authRoutes from './routes/auth.routes.js';
-// import login from './routes/auth.routes.js'
+import noteroute from './routes/note.route.js'
+import commentRoute from './routes/comment.route.js'
 const app = express();
 
 app.get("/",(req,res)=>{
@@ -9,5 +10,7 @@ app.get("/",(req,res)=>{
 
 app.use(express.json())
 app.use("/api/auth",authRoutes);
+app.use(noteroute);
+app.use(commentRoute);
 
 export default app;
